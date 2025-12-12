@@ -1,0 +1,123 @@
+# ============================================================================
+# Terraform Variables Example File
+# ============================================================================
+# 이 파일을 terraform.tfvars로 복사하고 실제 값으로 수정하세요
+#
+# 사용 방법:
+#   1. cp terraform.tfvars.example terraform.tfvars
+#   2. terraform.tfvars 파일을 편집하여 실제 값 입력
+#   3. terraform init && terraform plan
+#
+# 주의: terraform.tfvars 파일은 .gitignore에 포함되어 있어 Git에 커밋되지 않습니다
+# ============================================================================
+
+# ============================================================================
+# 필수 설정 항목
+# ============================================================================
+
+# 프로젝트 Prefix (모든 리소스 이름에 사용됨)
+# 예: "myproject", "dev", "prod" 등
+project_prefix = "myproject"
+
+# PostgreSQL 관리자 비밀번호 (필수)
+# 주의: 실제 운영 환경에서는 환경 변수나 Azure Key Vault 사용 권장
+#   예: export TF_VAR_postgresql_admin_password="your-secure-password"
+postgresql_admin_password = "CHANGE-ME-Secure123!@#"
+
+# ============================================================================
+# 일반 설정
+# ============================================================================
+
+# Azure 리전
+location = "Korea Central"
+
+# 리소스 태그
+tags = {
+  Environment = "Production"
+  Project     = "PLATFORM"
+  ManagedBy   = "Terraform"
+  Owner       = "Platform Team"
+}
+
+# ============================================================================
+# 선택 설정 - 리소스 이름 커스터마이징
+# ============================================================================
+# 아래 항목들은 설정하지 않으면 project_prefix를 사용하여 자동 생성됩니다
+#
+# project_prefix = "myproject"인 경우 자동 생성되는 이름:
+#   - hub_resource_group_name    = "MYPROJECT-HUB-RG"
+#   - spoke_resource_group_name  = "MYPROJECT-SPOKE-RG"
+#   - hub_vnet_name              = "MYPROJECT-HUB-VNET"
+#   - spoke_vnet_name            = "MYPROJECT-SPOKE-VNET"
+#   - nat_gateway_name           = "myproject-hub-nat"
+#   - vpn_gateway_name           = "myproject-hub-vgw"
+#   - aks_cluster_name           = "myproject-spoke-aks"
+#   - acr_name                   = "myprojectspokeacr"
+#   - postgresql_server_name     = "myproject-spoke-postgresql"
+#   - redis_cache_name           = "myproject-spoke-redis"
+
+# Resource Groups (선택)
+# hub_resource_group_name   = "CUSTOM-HUB-RG"
+# spoke_resource_group_name = "CUSTOM-SPOKE-RG"
+
+# Virtual Networks (선택)
+# hub_vnet_name   = "CUSTOM-HUB-VNET"
+# spoke_vnet_name = "CUSTOM-SPOKE-VNET"
+
+# Gateways (선택)
+# nat_gateway_name = "custom-hub-nat"
+# vpn_gateway_name = "custom-hub-vgw"
+
+# AKS (선택)
+# aks_cluster_name = "custom-spoke-aks"
+
+# ACR (선택)
+# acr_name = "customspokeacr"  # 영문 소문자와 숫자만 사용 가능
+
+# PostgreSQL (선택)
+# postgresql_server_name = "custom-spoke-postgresql"
+# postgresql_admin_username = "psqladmin"
+
+# Redis Cache (선택)
+# redis_cache_name = "custom-spoke-redis"
+
+# ============================================================================
+# 선택 설정 - 네트워크 구성
+# ============================================================================
+
+# Hub VNet Address Space (기본값: ["10.220.0.0/16"])
+# hub_vnet_address_space = ["10.220.0.0/16"]
+
+# Spoke VNet Address Space (기본값: ["10.221.0.0/16"])
+# spoke_vnet_address_space = ["10.221.0.0/16"]
+
+# ============================================================================
+# 선택 설정 - SKU 및 성능
+# ============================================================================
+
+# VPN Gateway SKU (기본값: "VpnGw2")
+# vpn_gateway_sku = "VpnGw2"
+
+# AKS Kubernetes Version (기본값: "1.28.9")
+# kubernetes_version = "1.28.9"
+
+# ACR SKU (기본값: "Premium")
+# acr_sku = "Premium"
+
+# PostgreSQL SKU (기본값: "GP_Standard_D4s_v3")
+# postgresql_sku = "GP_Standard_D4s_v3"
+
+# PostgreSQL Storage (기본값: 32768 MB)
+# postgresql_storage_mb = 32768
+
+# PostgreSQL Version (기본값: "14")
+# postgresql_version = "14"
+
+# Redis SKU (기본값: "Premium")
+# redis_sku = "Premium"
+
+# Redis Capacity (기본값: 1)
+# redis_capacity = 1
+
+# Redis Family (기본값: "P")
+# redis_family = "P"
