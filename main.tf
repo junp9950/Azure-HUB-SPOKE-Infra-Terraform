@@ -24,6 +24,8 @@ terraform {
 
 # Configure Azure Provider
 provider "azurerm" {
+  skip_provider_registration = true
+
   features {
     key_vault {
       purge_soft_delete_on_destroy = false
@@ -53,7 +55,7 @@ locals {
   nat_gw_name  = coalesce(var.nat_gateway_name, "${local.prefix_lower}-hub-nat")
   vpn_gw_name  = coalesce(var.vpn_gateway_name, "${local.prefix_lower}-hub-vgw")
   aks_name     = coalesce(var.aks_cluster_name, "${local.prefix_lower}-spoke-aks")
-  acr_name     = coalesce(var.acr_name, "${local.prefix_lower}spokeacr")
+  acr_name     = coalesce(var.acr_name, replace("${local.prefix_lower}spokeacr", "-", ""))
   psql_name    = coalesce(var.postgresql_server_name, "${local.prefix_lower}-spoke-postgresql")
   redis_name   = coalesce(var.redis_cache_name, "${local.prefix_lower}-spoke-redis")
 }

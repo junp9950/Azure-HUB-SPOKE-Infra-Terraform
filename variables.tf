@@ -222,25 +222,42 @@ variable "virtual_machines" {
       version   = string
     })
   }))
-  default = {
-    "app" = {
-      os_type        = "Linux"
-      size           = "Standard_D4s_v3"
-      admin_username = "azureuser"
-      ssh_key_name   = "app_key"
-      subnet_name    = "app-subnet"
-      network_security_group_name = "app-nsg"
-      enable_accelerated_networking = true
-      os_disk_size_gb = 128
-      source_image = {
-        publisher = "Canonical"
-        offer     = "0001-com-ubuntu-server-jammy"
-        sku       = "22_04-lts-gen2"
-        version   = "latest"
-      }
-    }
-  }
+
+  # VM 생성이 필요한 경우 terraform.tfvars에서 다음과 같이 정의하세요:
+  # virtual_machines = {
+  #   "app" = {
+  #     os_type        = "Linux"
+  #     size           = "Standard_D4s_v3"
+  #     admin_username = "azureuser"
+  #     ssh_key_data   = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAB... your-public-key-here"
+  #     subnet_name    = "app-subnet"
+  #     network_security_group_name = "app-nsg"
+  #     enable_accelerated_networking = true
+  #     os_disk_size_gb = 128
+  #     source_image = {
+  #       publisher = "Canonical"
+  #       offer     = "0001-com-ubuntu-server-jammy"
+  #       sku       = "22_04-lts-gen2"
+  #       version   = "latest"
+  #     }
+  #   }
+  # }
+  default = {}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # AKS Variables
 variable "aks_cluster_name" {
